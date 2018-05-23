@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/gcStatus.css" />
+		<link rel="stylesheet" type="text/css" href="js/nProgress/nprogress.css"/>
+		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/nProgress/nprogress.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<title>随江豚出发</title>
+	</head>
+	<body>
+		<div id="popupLoad">
+			<div class="loadBox">
+				<div class="loadbar">
+					<div id="bar"></div>
+					<img class="loadJtun" src="img/jt_1.gif"/>
+				</div>
+				<div id="loading">8%</div>
+			</div>
+			<div class="loadtips">环保小贴士：江豚是少数会主动营救人类的野生动物<br />之一，让我们一起去保护它，而非猎杀、圈禁</div>
+		</div>
+		<div id="content">
+			<header>
+				<img src="img/logo.png"/>
+			</header>
+			<div class="container">
+				<div class="top">
+					<img class="topBg" src="img/top_bg.png"/>
+					<div id="back"><img src="img/home.png"/></div>
+					<div class="title">
+						<img src="img/gc_status/title.png"/>
+					</div>
+				</div>
+				<div class="main">
+					<img class="prev" src="img/gc_status/fh.png"/>
+					<img id="close" src="img/gc_status/gb.png"/>
+					<div class="part part1">
+						<div class="boxOne">
+							<ul class="garImglist">
+								<li><img src="img/gc_status/lj_1.png"/></li>
+								<li><img src="img/gc_status/lj_2.png"/></li>
+								<li><img src="img/gc_status/lj_3.png"/></li>
+								<li><img src="img/gc_status/lj_4.png"/></li>
+								<li><img src="img/gc_status/lj_5.png"/></li>
+								<li><img src="img/gc_status/lj_6.png"/></li>
+								<li>当前总和：</li>
+								<li>累积总和：</li>
+							</ul>
+							<ul>
+								<li>.........</li>
+								<li>.........</li>
+								<li>.........</li>
+								<li>.........</li>
+								<li>.........</li>
+								<li>.........</li>
+								<li>.........</li>
+								<li>.........</li>
+							</ul>
+							<ul class="garNumlist">
+								<li>0</li>
+								<li>0</li>
+								<li>0</li>
+								<li>0</li>
+								<li>0</li>
+								<li>0</li>
+								<li class="onNum">0</li>
+								<li class="totalNum">0</li>
+							</ul>
+						</div>
+						<div class="btn dhBtn"><img src="img/gc_status/dhys.png"/></div>
+					</div>
+					<div class="part part2">
+						<ul class="fishes">
+							<li><img src="img/gc_status/y_1.png"/><div class="num">50</div></li>
+							<li><img src="img/gc_status/y_2.png"/><div class="num">60</div></li>
+							<li><img src="img/gc_status/y_3.png"/><div class="num">70</div></li>
+							<li><img src="img/gc_status/y_4.png"/><div class="num">80</div></li>
+							<li><img src="img/gc_status/y_5.png"/><div class="num">90</div></li>
+						</ul>
+						<ul class="kdh">
+							<li>可兑换数：</li>
+							<li>.........</li>
+							<li class="kdhNum">0</li>
+						</ul>
+					</div>
+					<div class="part part3">
+						<div class="fishType"><img src="img/gc_status/y_1.png"/><div class="num">0</div></div>
+						<ul class="numBtns">
+							<li class="reduce"><img src="img/gc_status/jian.png"/></li>
+							<li class="numBox"><input type="number" name="dhNum" id="dhNum" value="1" /></li>
+							<li class="add" itsType="dh"><img src="img/gc_status/jia.png"/></li>
+						</ul>
+						<div class="btn qrdhBtn"><img src="img/gc_status/qrdh.png"/></div>
+						<ul class="kdh">
+							<li>可兑换数：</li>
+							<li>.........</li>
+							<li class="kdhNum">0</li>
+						</ul>
+					</div>
+					<div class="part part4">
+						<div class="fishType"><img src="img/gc_status/y_1.png"/><div class="num  numff">0</div></div>
+						<div class="dhText">恭喜您成功兑换0条鱼食</div>
+						<div class="btn wyBtn"><img src="img/gc_status/wyjt.png"/></div>
+						<div class="dhBox">
+							<ul class="bcdh">
+								<li>本次兑换数：</li>
+								<li>.........</li>
+								<li class="bcNum">0</li>
+							</ul>
+							<ul class="sydh">
+								<li>剩余兑换数：</li>
+								<li>.........</li>
+								<li class="syNum">0</li>
+							</ul>
+						</div>
+					</div>
+					<div class="part part5">
+						<div class="fishType"><img src="img/gc_status/y_1.png"/><div class="num numff">0</div></div>
+						<ul class="numBtns">
+							<li class="reduce"><img src="img/gc_status/jian.png"/></li>
+							<li class="numBox"><input type="number" name="wyNum" id="wyNum" value="1" /></li>
+							<li class="add" itsType="wy"><img src="img/gc_status/jia.png"/></li>
+						</ul>
+						<div class="btn qrwyBtn"><img src="img/gc_status/qrwy.png"/></div>
+					</div>
+					<div class="part part6">
+						<div class="fishType"><img src="img/gc_status/y_1.png"/><div class="num numff">0</div></div>
+						<div class="wyText">恭喜您成功喂养江豚</div>
+					</div>
+				</div>
+			</div>
+			<footer>
+				想要了解更多关于汇丰中国的信息，请点击<span id="reservation">预约联络</span>
+			</footer>
+		</div>
+		<div id="tipsHidden">
+			<div id="tipsPopup">
+				<img id="tipsClose" src="img/gb.png"/>
+				<div class="tipstext">您的积分不足，无法兑换</div>
+				<div id="confirm"><img src="img/confirm.png"/></div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$("#popupLoad").show();	//show loading
+			NProgress.start();
+			var resTag = 0;
+			var token = $.cookie("token");	//获取url(链接)参数
+			console.log(token);
+			
+			//获取该用户的垃圾捡拾数信息
+			var garlist = [],
+				useNum = 0;		//记录当前可用数	
+			$.ajax({
+				type:"post",
+				url:"https://hsbc.fugumobile.cn/api/api/Api/userGarbage",
+				async:false,
+				data:JSON.stringify({
+					"token":token
+				}),
+				dataType:"json",
+				success:function(data){
+					console.log(data);
+					if(data.errcode==0){
+						garlist = data.data.garbage_list_count;
+						useNum = data.data.use_points;
+						for (var i=0; i<garlist.length; i++) {
+							$(".garImglist").find("li").eq(i).children("img").attr("src",garlist[i].garbage_icon_img);
+							$(".garNumlist").find("li").eq(i).html(garlist[i].garbage_count);
+						}
+						$(".onNum").html(data.data.all_count).siblings(".totalNum").html(useNum);
+					}else{
+						$(".tipstext").html(data.errmsg).parents("#tipsHidden").show();
+						resTag = 1;
+					}	
+				},
+				error:function(err){
+					console.log(err);
+				}
+			});
+			
+			var partNum = 0,
+				kdhMax = 0,
+				kwyMax = 0,
+				fishId = 0;
+			$(".prev").on("click", function(){	
+				partNum--;
+				console.log(partNum);
+				$(".part").eq(partNum).show().siblings(".part").hide();
+				if(partNum==4 || partNum==5){
+					$(".part").eq(partNum).css({"display":"flex"});
+				} 
+				if(partNum==0){
+					$(this).hide();
+				}else{
+					$(this).show();
+				}
+			});
+			
+			$(".dhBtn").on("click", function(){
+				partNum++;
+				console.log(partNum);
+				$(".kdhNum").html(useNum);
+				$(".part").eq(partNum).show().siblings(".part").hide().siblings(".prev").show();
+			});
+			$(".fishes").find("li").on("click", function(){
+				fishId = $(this).index()+1;
+				var typeSrc = $(this).children("img").attr("src");
+				var typeNum = parseInt($(this).children(".num").html());
+				console.log("fishId:"+fishId,"typeNum:"+typeNum);
+				kdhMax = Math.floor(useNum/typeNum);
+				kdhMax==0?$("#dhNum").val(0):$("#dhNum").val(1);
+				partNum++;
+				console.log(partNum);
+				$(".fishType").children("img").attr("src",typeSrc);
+				$(".part").eq(partNum).find(".fishType").children(".num").html(typeNum);
+				$(".part").eq(partNum).show().siblings(".part").hide();
+			});
+			$(".qrdhBtn").on("click", function(){
+				if(kdhMax==0){
+					$(".tipstext").html("您的积分不足，无法兑换").parents("#tipsHidden").show();
+					return false;
+				}
+				var fishdhNum = $("#dhNum").val();
+				$.ajax({
+					type:"post",
+					url:"https://hsbc.fugumobile.cn/api/api/Api/useGarbageToFish",
+					async:false,
+					data:JSON.stringify({
+						"token":token,
+						"fishId":fishId,
+						"fishNum":fishdhNum
+					}),
+					dataType:"json",
+					success:function(data){
+						console.log(data);
+						if(data.errcode==0){
+							$("#dhNum").val(1);		//兑换输入框复原
+							partNum++;
+							console.log(partNum);
+							kwyMax = data.data.fish_count;
+							$(".part4").find(".fishType").children(".num").html(kwyMax);
+							$(".part5").find(".fishType").children(".num").html(kwyMax);
+							$(".dhText").html("恭喜您成功兑换"+fishdhNum+"条鱼食");
+							$(".bcNum").html(useNum-data.data.use_points);
+							useNum = data.data.use_points;
+							$(".syNum").html(useNum);
+							$(".kdhNum").html(useNum);
+							$(".part").eq(partNum).show().siblings(".part").hide();
+						}else{
+							$(".tipstext").html(data.errmsg).parents("#tipsHidden").show();
+							resTag = 1;
+						}
+					},
+					error:function(err){
+						console.log(err);
+					}
+				});
+			});
+			$(".wyBtn").on("click", function(){
+				if(kwyMax==0){
+					$(".tipstext").html("鱼食数目不足，请先兑换").parents("#tipsHidden").show();
+					return false;
+				}
+				partNum++;
+				console.log(partNum);
+				$(".part").eq(partNum).css({"display":"flex"}).siblings(".part").hide();
+			});
+			$(".qrwyBtn").on("click", function(){
+				var fishwyNum = $("#wyNum").val();
+				if(kwyMax==0){
+					$(".tipstext").html("鱼食数目不足，请先兑换").parents("#tipsHidden").show();
+					return false;
+				}
+				$.ajax({
+					type:"post",
+					url:"https://hsbc.fugumobile.cn/api/api/Api/userFishFeedDolphin",
+					data:JSON.stringify({
+						"token":token,
+						"fishId":fishId,
+						"fishNum":fishwyNum
+						}),
+					dataType:"json",
+					async:false,
+					success:function(data){
+						console.log(data);
+						if(data.errcode==0){
+							$("#wyNum").val(1);		//喂养输入框复原
+							kwyMax = kwyMax-fishwyNum;
+							$(".part5").find(".fishType").children(".num").html(kwyMax);
+							$(".part4").find(".fishType").children(".num").html(kwyMax);
+							partNum++;
+							console.log(partNum);
+							$(".part").eq(partNum).find(".fishType").children(".num").html(fishwyNum);
+							$(".part").eq(partNum).css({"display":"flex"}).siblings(".part").hide();
+							
+							/*var closeTime = 3;		//成功喂养后3秒后关闭
+							var closeTimer = setInterval(function(){
+								if(closeTime>1){
+					    			closeTime--;
+					    			console.log(closeTime);
+					    			$("#closeTime").html("0"+closeTime);
+					    		}else if(closeTime==1){
+				    				clearInterval(closeTimer);
+				    				partNum = 0;
+				    				$(".part").eq(partNum).css({"display":"flex"}).siblings(".part").hide().parents("#wyHidden").hide();
+				    				$("#closeTime").html("03");		//closeTime复原
+				    			}
+							},1000);*/
+						}else{
+							$(".tipstext").html(data.errmsg).parents("#tipsHidden").show();
+							resTag = 1;
+						}
+					},
+					error: function(err){
+						console.log(err);
+					}
+				});
+			});
+			
+			$("#back").on("click", function(){
+				window.location.href = "index.html"+window.location.search;
+			});
+			$("#close").on("click", function(){
+				window.location.href = "index.html"+window.location.search;
+			});
+			
+			//点击+1 & -1
+		    $(".add").on("click", function(){
+		    	var max = $(this).attr("itsType")=="dh"?kdhMax:kwyMax;
+	    		var x = parseInt($(this).siblings(".numBox").children("input").val());
+	    		if(x+1>max){
+	    			$(".tipstext").html('数量不能超过"'+max+'"').parents("#tipsHidden").show();
+	    			return false;
+	    		}
+	    		$(this).siblings(".numBox").children("input").val(x+1);
+	    	});
+		    $(".reduce").on("click", function(){
+	    		var x = $(this).siblings(".numBox").children("input").val();
+	    		if(x<=1){
+	    			$(".tipstext").html('数量不能为“0”').parents("#tipsHidden").show();
+	    			return false;
+	    		}
+	    		$(this).siblings(".numBox").children("input").val(parseInt(x)-1);
+	    	});
+	    	//监听输入框的内容变化
+	    	$("#wyNum").on("input porpertychange", function(){
+	    		var val = parseInt($(this).val());
+	    		if(val>kwyMax){
+	    			$(".tipstext").html('数量不能超过"'+kwyMax+'"').parents("#tipsHidden").show();
+	    			$(this).val(kwyMax);
+	    			return false;
+	    		}else if(val==0){
+	    			$(".tipstext").html('数量不能为“0”').parents("#tipsHidden").show();
+	    			$(this).val(1);
+	    			return false;
+	    		}
+	    	});
+	    	$("#dhNum").on("input porpertychange", function(){
+	    		var val = parseInt($(this).val());
+	    		if(val>kdhMax){
+	    			$(".tipstext").html('数量不能超过"'+kdhMax+'"').parents("#tipsHidden").show();
+	    			$(this).val(kdhMax);
+	    			return false;
+	    		}else if(val==0){
+	    			$(".tipstext").html('数量不能为“0”').parents("#tipsHidden").show();
+	    			$(this).val(1);
+	    			return false;
+	    		}
+	    	});
+	    	$("input").on("blur", function(){
+	    		if($(this).val()==""){
+	    			$(".tipstext").html('数量不能为“0”').parents("#tipsHidden").show();
+	    			$(this).val(1);
+	    		}
+	    	});
+	    	
+	    	//tips popup
+			$("#tipsClose").on("click", function(){
+		    	$(this).parents("#tipsHidden").hide();
+		    	if(resTag == 1){
+		    		window.location.href = "https://hsbc.fugumobile.cn/exit.html?exit=1";
+		    	}
+		    });
+		    $("#confirm").on("click", function(){
+		    	$(this).parents("#tipsHidden").hide();
+		    	if(resTag == 1){
+		    		//window.location.href = "index.html"+changeURLArg(window.location.search,"uid","");
+		    		window.location.href = "https://hsbc.fugumobile.cn/exit.html?exit=1";
+		    	}
+		    });
+			
+			window.onload = function(){
+				NProgress.done();
+				$("#popupLoad").hide().siblings("#content").show();
+			};
+		</script>
+	</body>
+</html>

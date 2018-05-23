@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/travelMap.css" />
+		<link rel="stylesheet" type="text/css" href="js/nProgress/nprogress.css"/>
+		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/dragForMap.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/nProgress/nprogress.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/wxshare.js" type="text/javascript" charset="utf-8"></script>
+		<title>随江豚出发</title>
+	</head>
+	<body>
+		<div id="popupLoad">
+			<div class="loadBox">
+				<div class="loadbar">
+					<div id="bar"></div>
+					<img class="loadJtun" src="img/jt_1.gif"/>
+				</div>
+				<div id="loading">8%</div>
+			</div>
+			<div class="loadtips">环保小贴士：江豚是少数会主动营救人类的野生动物<br />之一，让我们一起去保护它，而非猎杀、圈禁</div>
+		</div>
+		<div id="content">
+			<header>
+				<img src="img/logo.png"/>
+			</header>
+			<div class="top">
+				<img class="topBg" src="img/top_bg.png"/>
+				<div id="back"><img src="img/home.png"/></div>
+				<div class="title">
+					<img src="img/map/title.png"/>
+				</div>
+				<img id="share" src="img/share.png"/>
+			</div>
+			<div id="move">
+				<img id="mapBg" src="img/map/map.jpg"/>
+				<ul class="spotslist">
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n1"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n2"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n3"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n4"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n5"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n6"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n7"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n8"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n9"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n10"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n11"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n12"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n13"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n14"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n15"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n16"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n17"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n18"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n19"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n20"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n21"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n22"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n23"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n24"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n25"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n26"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n27"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n28"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n29"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n30"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n31"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n32"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n33"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n34"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n35"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n36"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n37"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n38"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n39"></div></div>
+					</li>
+					<li>
+						<div class="spot"><img class="logoS" src="img/map/logo.png"/><div class="nameS n40"></div></div>
+					</li>
+				</ul>
+			</div>
+			<footer>
+				想要了解更多关于汇丰中国的信息，请点击<span id="focus">关注公众号</span>
+			</footer>
+		</div>
+		<div id="msgHidden">
+			<div id="msgPopup">
+				<img class="msgClose" src="img/gc_status/gb.png"/>
+				<div class="main">
+					<div id="scroller">
+						
+					</div>
+					<ul class="btns">
+						<li class="favo"><img src="img/favo.png"/></li>
+						<li class="share"><img src="img/btl_msg/fx.png"/></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="tipsHidden">
+			<div id="tipsPopup">
+				<img id="tipsClose" src="img/gb.png"/>
+				<div class="tipstext">您的积分不足，无法兑换</div>
+				<div id="confirm"><img src="img/confirm.png"/></div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$("#popupLoad").show();	//show loading
+			NProgress.start();
+			var resTag = 0;
+			
+			var screenW = document.documentElement.getBoundingClientRect().width,
+				screenH = document.documentElement.getBoundingClientRect().height;
+			
+			var token = $.cookie("token"),	//获取url(链接)参数
+				uid = getUrlParam("uid"),
+				sharing = getUrlParam("sharing");
+			console.log(token,uid);
+			
+			//初始化地图线路
+			var spotsInfo = [
+				["上海",1229,572,0],["伦敦",463,266,0],["香港",1186,693,0],
+				["纽约",2468,427,0],["新加坡",1070,909,0],["吉隆坡",1050,884,0],
+				["墨西哥城",2303,597,0],["温哥华",2108,380,0],["悉尼",1482,1266,0],
+				["迪拜",694,652,0],["台北",1236,681,0],["阿尔及尔",353,469,0],
+				["布诺斯艾利斯",2616,1380,0],["达卡",974,675,0],["布鲁塞尔",499,303,0],
+				["布拉格",583,362,0],["开罗",537,578,0],["巴黎",433,336,0],
+				["杜赛尔多夫",527,302,0],["雅典",516,463,0],["孟买",871,707,0],
+				["雅加达",1104,996,0],["都柏林",428,259,0],["拉马特甘",597,535,0],
+				["米兰",479,392,0],["罗马",440,426,0],["东京",1398,566,0],
+				["首尔",1299,552,0],["科威特城",658,591,0],["澳门",1155,706,0],["马累",849,876,0],
+				["奥克兰",1681,1322,0],["华沙",597,330,0],["马德里",332,426,0],
+				["莫斯科",709,286,0],["科伦坡",876,849,0],["斯德哥尔摩",601,229,0],
+				["曼谷",1050,776,0],["伊斯坦布尔",574,423,0],["胡志明市",1096,810,0],
+			
+				/*["伦敦",463,266,0],["悉尼",1482,1266,0],["布鲁塞尔",499,303,0],
+				["圣保罗",2397,415,0],["温哥华",2108,380,0],["圣地亚哥",2209,547,0],
+				["北京",1172,560,0],["上海",1229,572,0],["布拉格",583,362,0],
+				["巴黎",433,336,0],["杜赛尔多夫",527,302,0],["雅典",516,463,0],
+				["香港",1186,693,0],["雅加达",1104,996,0],["米兰",479,392,0],
+				["东京",1398,566,0],["首尔",1299,552,0],["吉隆坡",1050,884,0],
+				["新加坡",1070,909,0],["苏黎世",562,348,0],["台北",1236,681,0],["墨西哥城",2303,597,0],
+				["阿姆斯特丹",515,286,0],["奥克兰",1681,1322,0],["华沙",597,330,0],
+				["马德里",332,426,0],["莫斯科",709,286,0],["利雅得",640,659,0],
+				["斯德哥尔摩",601,229,0],["日内瓦",468,356,1],["曼谷",1050,776,0],    
+				["纽约",2468,427,0],["伯明翰",2432,533,0],["摩纳哥",428,380,0],
+				["卡萨布兰卡",286,501,0],["科伦坡",876,849,0],["马累",849,876,0],
+				["澳门",1155,706,0],["多哈",670,639,0],["胡志明市",1096,810,0],
+				["开普敦",480,1279,0],["都柏林",428,259,0],
+				["卢森堡",509,336,0],["伊斯坦布尔",574,423,0],["罗马",440,426,0],
+				["阿尔盖斯",353,469,0],["瓦贝莱塔",458,481,0],["开罗",537,578,0],
+				["科威特城",658,591,0],["迪拜",694,652,0],["达卡",974,675,0],
+				["布诺斯艾利斯",2616,1380,0],["蒙得维的亚",2643,1368,0],["巴林岛",689,639,0],
+				["孟买",871,707,0],["阿尔及尔",353,469,0],["拉马特甘",597,535,0],*/
+			];
+			var spotsStatus = [],	//地图上点的状态，是否到达
+				arrivedInd = 0;		//最新到达的点
+			for(var i=0; i<spotsInfo.length; i++){
+				$(".spotslist").find("li").eq(i).css({"left":spotsInfo[i][1]+"px","top":spotsInfo[i][2]+"px"}).find(".nameS").html(spotsInfo[i][0]);
+			}
+			
+			if(sharing && uid){		//判断是否由分享链接
+				console.log("from share");
+				$("title").html("汇丰银行--随江豚一起出发");
+				$("#share").hide().siblings("#back").hide();
+				$("footer").show();
+				$(".btns").hide();
+				$.ajax({
+					type:"post",
+					url:"https://hsbc.fugumobile.cn/api/api/Api/getMapListByShare",
+					async:false,
+					data:JSON.stringify({
+						"uid":uid
+					}),
+					dataType:"json",
+					success:function(data){
+						console.log(data);
+						if(data.errcode==0){
+							spotsStatus = data.data;
+							for(var i=0; i<spotsStatus.length; i++){
+								$(".spotslist").find("li").eq(i).attr("arrived",spotsStatus[i].status);
+								if(spotsStatus[i].status==0){
+									$(".spotslist").find("li").eq(i).children(".spot").css({"background":"#fff","border-color":"rgba(145, 202, 232, 0.6)"}).children(".logoS").hide();
+								}else{
+									arrivedInd = i;
+								}
+							}
+						}else{
+							$(".tipstext").html(data.errmsg).parents("#tipsHidden").show();
+						}	
+					},
+					error:function(err){
+						console.log(err);
+					}
+				});
+			}else{
+				$.ajax({
+					type:"post",
+					url:"https://hsbc.fugumobile.cn/api/api/Api/getMyMapList",
+					async:false,
+					data:JSON.stringify({
+						"token":token
+					}),
+					dataType:"json",
+					success:function(data){
+						console.log(data);
+						if(data.errcode==0){
+							spotsStatus = data.data;
+							for(var i=0; i<spotsStatus.length; i++){
+								$(".spotslist").find("li").eq(i).attr("arrived",spotsStatus[i].status);
+								if(spotsStatus[i].status==0){
+									$(".spotslist").find("li").eq(i).children(".spot").css({"background":"#fff","border-color":"rgba(145, 202, 232, 0.6)"}).children(".logoS").hide();
+								}else{
+									arrivedInd = i;
+								}
+							}
+						}else{
+							$(".tipstext").html(data.errmsg).parents("#tipsHidden").show();
+							resTag = 1;
+						}	
+					},
+					error:function(err){
+						console.log(err);
+					}
+				});
+			}
+			
+			//地图区域的左右拖动
+			var moveDom = document.getElementById("move");
+		    moveDom.addEventListener("mousedown",function(){
+		        down();
+		    },false);
+		    moveDom.addEventListener("touchstart",function(){
+		        down();
+		    },false);
+		    moveDom.addEventListener("mousemove",function(){
+		        move();
+		    },false);
+		    moveDom.addEventListener("touchmove",function(){
+		        move();
+		    },false);
+		    document.body.addEventListener("mouseup",function(){
+		        end();
+		    },false);
+		    moveDom.addEventListener("touchend",function(){
+		        end();
+		    },false);
+			
+			//判断是否在使用微信
+			var u = navigator.userAgent.toLowerCase();
+			if(u.match(/MicroMessenger/i) == "micromessenger"){
+				var title = "我的江豚宝宝居然来到了"+spotsInfo[arrivedInd][0],
+					desc = "快来一起喂江豚宝宝！",
+					shareUrl = "https://hsbc.fugumobile.cn/travelMap.html?sharing=5aa0ff2f349ab&uid="+uid,
+					pic = "https://hsbc.fugumobile.cn/img/share_map.png";
+				setwxshare(title, desc, shareUrl, pic);
+			}
+			
+			$("#back").on("click", function(){
+				window.location.href = "index.html"+window.location.search;
+			});
+			
+			//点击分享
+			var bottleId = 0;
+			$("#share").on("click", function(){
+				window.open('travelMap.html?wechatshare={"type":"webpage","title":"我的江豚宝宝居然来到了'+spotsInfo[arrivedInd][0]+'","description":"快来一起喂江豚宝宝！","link":"https://hsbc.fugumobile.cn/travelMap.html?sharing=5aa0ff2f349ab&uid='+uid+'","image":"sharing_icon_map"}');
+			});
+			
+			$(".favo").on("click", function(){
+				var $favo = $(this);
+				$.ajax({
+					type:"post",
+					url:"https://hsbc.fugumobile.cn/api/api/Api/changeBottleCollect",
+					async:false,
+					data:JSON.stringify({
+						"token":token,
+						"mapId":bottleId
+					}),
+					dataType:"json",
+					success:function(data){
+						console.log(data);
+						if(data.errcode==0){
+							if($favo.attr("collected")==1){	//collected==1:已收藏
+								$favo.attr("collected",0).children("img").attr("src","img/favo.png");
+							}else{
+								$favo.attr("collected",1).children("img").attr("src","img/nofavo.png");
+							}
+						}else{
+							$(".tipstext").html(data.errmsg).parents("#tipsHidden").show();
+							resTag = 1;
+						}
+					},
+					error:function(err){
+						console.log(err);
+					}
+				});	
+			});
+			$(".share").on("click", function(){
+				window.open('bottleMsg.html?wechatshare={"type":"webpage","title":"这道题你会答吗？","description":"快来一起喂江豚宝宝！","link":"https://hsbc.fugumobile.cn/bottleMsg.html?sharing=5aa0ff2f349ab&uid='+uid+'&bottleId='+bottleId+'","image":"sharing_icon_bottle"}');
+			});
+			
+			//点击关注公众号
+			$("#focus").on("click", function(){
+				window.open("https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzA5NDQ5NTkyMA==&scene=124#wechat_redirect");
+			});
+			
+			//点击地点，显示瓶中信内容
+			$(".spotslist").find("li").on("click", function(){
+				var ind = $(this).index();
+				console.log(ind);
+				bottleId = ind+1;
+				if(sharing && uid){
+					return false;
+				}
+				if($(this).attr("arrived")==1){
+					$.ajax({		//获取该用户当前点击位置的漂流瓶信息
+						type:"post",
+						url:"https://hsbc.fugumobile.cn/api/api/Api/getBottleInfo",
+						async:false,
+						data:JSON.stringify({
+							"token":token,
+							"bottleId":bottleId,
+							"type":1
+						}),
+						dataType:"json",
+						success:function(data){
+							console.log(data);
+							if(data.errcode==0){
+								//显示当前的漂流瓶信息
+								var msg = data.data;
+								if(msg.collect==1){
+							    	$(".favo").attr("collected",1).children("img").attr("src","img/nofavo.png");
+							    }
+								$("#scroller").html('<div class="swiper-slide">'+
+							    	'<div class="intro">'+msg.introduce+'</div>'+
+							    	'<div class="quest">'+msg.question+'</div>'+
+							    	'<ul class="answerList">'+
+							    		'<li><span>A.</span>'+msg.answer_list.A+'<img src=""/></li>'+
+								    	'<li><span>B.</span>'+msg.answer_list.B+'<img src=""/></li>'+
+								    	'<li><span>C.</span>'+msg.answer_list.C+'<img src=""/></li>'+
+								    	'<li><span>D.</span>'+msg.answer_list.D+'<img src=""/></li>'+
+							    	'</ul>'+
+							    '</div>').parents("#msgHidden").show();
+							    $(".answerList").find("li").eq(msg.right_answer-1).css({"background":"#7db93d","color":"#fff"}).children("img").attr("src","img/btl_msg/right.png").show();			    
+							}else{
+								$(".tipstext").html(data.errmsg).parents("#tipsHidden").show();
+								resTag = 1;
+							}
+						},
+						error:function(err){
+							console.log(err);
+						}
+					});
+				}else{
+					$(".tipstext").html("您的江豚还没到这里，请继续旅行").parents("#tipsHidden").show();
+				}
+			});
+			$(".msgClose").on("click", function(){
+				$(this).parents("#msgHidden").hide();
+			});
+			
+			//tips popup
+			$("#tipsClose").on("click", function(){
+		    	$(this).parents("#tipsHidden").hide();
+		    	if(resTag == 1){
+		    		window.location.href = "https://hsbc.fugumobile.cn/exit.html?exit=1";
+		    	}
+		    });
+		    $("#confirm").on("click", function(){
+		    	$(this).parents("#tipsHidden").hide();
+		    	if(resTag == 1){
+		    		//window.location.href = "index.html"+changeURLArg(window.location.search,"uid","");
+		    		window.location.href = "https://hsbc.fugumobile.cn/exit.html?exit=1";
+		    	}
+		    });
+			
+			window.onload = function(){
+				NProgress.done();
+				$("#popupLoad").hide().siblings("#content").show();
+			};
+		</script>
+	</body>
+</html>

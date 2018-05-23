@@ -1,0 +1,197 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+img {
+  display: block;
+}
+a {
+  text-decoration: none;
+}
+i {
+  font-style: normal;
+}
+input,
+button,
+select,
+textarea {
+  outline: none;
+}
+audio, video{
+  display: none;
+}
+/*for SHBC font*/
+@font-face {
+	font-family: "Gfont";
+	src: url("../fonts/gamefont.TTF") format('truetype');
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: "Gfont";
+}
+
+/*for game loading popup*/
+#popupLoad{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  z-index: 999999; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(../img/loading.png) no-repeat;
+  background-size: 100% 100%;
+  font-family: helvetica;
+}
+#popupLoad .loadBox{
+	width: 100%; height: 0.36rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#popupLoad .loadBox .loadbar{
+	width: 4rem; height: 0.2rem;
+	border-radius: 5px;
+	background: #a2d6e3;
+	position: relative; left: 0; top: 0;
+}
+#popupLoad .loadBox #loading{
+	font-size: 0.24rem;
+	line-height: 0.24rem;
+	margin-left: 0.06rem;
+}
+#popupLoad .loadBox .loadbar #bar{
+	width: 0.32rem; height: 0.2rem;
+	border-radius: 5px;
+	background: #3cbddd;
+	position: absolute; left: 0; top: 0;
+}
+#popupLoad .loadBox .loadbar .loadJtun{
+	width: auto; height: 1.6rem;
+	position: absolute; left: 45%; top: -1.6rem; 
+}
+#popupLoad .loadtips{
+	width: 100%; height: 0.68rem;
+	position: absolute; left: 0; bottom: 6%;
+	text-align: center;
+	font-size: 0.24rem;
+}
+
+#content {
+	display: none;
+	width: 100%; height: 100%;
+}
+header {
+  width: 100%;
+  height: 0.8rem;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 166;
+}
+header img {
+  width: 2rem;
+}
+.sQRcode{
+	width: 0.6rem; height: 0.6rem;
+	display: none;
+	position: absolute; right: 0; bottom: 0.9rem;
+	z-index: 166;
+}
+.qrCodeBox{
+	width: 100%; height: 100%;
+	background: rgba(0,0,0,0.8);
+	display: none;
+	justify-content: center;
+	align-items: center;
+	position: absolute; left: 0; top: 0;
+	z-index: 188;
+}
+.qrCodeBox .qrCode{
+	width: 100%; height: auto;
+}
+footer{
+	width: 100%;
+  height: 0.72rem;
+  display: none;
+  background: rgba(0,162,255,0.8);
+  font-family: "微软雅黑";
+  font-size: 0.24rem;
+  color: #fff;
+  text-align: center;
+  line-height: 0.72rem;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 166;
+}
+footer span{
+	font-weight: bolder;
+	text-decoration: underline;
+}
+
+/*for game tips popup*/
+#tipsHidden {
+  width: 100%;
+  height: 100%;
+  display: none;
+  padding-top: 0.8rem;
+  box-sizing: border-box;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 266;
+  background: rgba(0, 0, 0, 0.4);
+}
+#tipsHidden #tipsPopup {
+  width: 5.54rem;
+  height: 2.87rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  opacity: 1;
+  background: url(../img/name/kuang.png) no-repeat;
+  background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#tipsHidden #tipsPopup #tipsClose {
+  width: 0.88rem;
+  height: 0.88rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+#tipsHidden #tipsPopup .tipstext {
+  width: 78%;
+  height: 0.75rem;
+  margin: 0.4rem 0 0.2rem;
+  font-family: "Gfont";
+  font-size: 0.24rem;
+  color: #0aaeb8;
+  text-align: center;
+  line-height: 0.75rem;
+}
+#tipsHidden #tipsPopup #confirm {
+  width: 1.43rem;
+  height: 0.6rem;
+}
+#tipsHidden #tipsPopup #confirm img {
+  width: 100%;
+  height: 100%;
+}

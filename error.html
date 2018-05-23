@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script src="js/adaptiveLayout.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<title>随江豚出发</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+			    padding: 0;
+			    list-style: none;
+			}
+			img{
+				display: block;
+			}
+			html,body {
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+			}
+			#content{
+				width: 100%;
+				height: 100%;
+				box-sizing: border-box;
+				background: url(img/errbg.png) no-repeat;
+				background-size: 100% 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				font-size: 0.24rem;
+			}
+			.errBox{
+				text-align: center;
+				line-height: 0.36rem;
+			}
+			#confirm{
+				width: 1.43rem; height: 0.6rem;
+				margin-top: 0.36rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="content">
+			<div class="errBox">
+				哎呦~ <br />
+				好像有什么出错了，请稍后重新回来。
+			</div>
+			<img src="img/confirm.png" id="confirm" />
+		</div>
+		<script type="text/javascript">
+			$("#confirm").on("click", function(){
+				window.location.href = "https://hsbc.fugumobile.cn/exit.html?exit=1";
+			});
+		</script>
+	</body>
+</html>

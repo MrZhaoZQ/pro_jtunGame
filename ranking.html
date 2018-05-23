@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/ranking.css" />
+		<link rel="stylesheet" type="text/css" href="js/nProgress/nprogress.css"/>
+		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/nProgress/nprogress.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/wxshare.js" type="text/javascript" charset="utf-8"></script>
+		<title>随江豚出发</title>
+	</head>
+	<body>
+		<div id="popupLoad">
+			<div class="loadBox">
+				<div class="loadbar">
+					<div id="bar"></div>
+					<img class="loadJtun" src="img/jt_1.gif"/>
+				</div>
+				<div id="loading">8%</div>
+			</div>
+			<div class="loadtips">环保小贴士：江豚是少数会主动营救人类的野生动物<br />之一，让我们一起去保护它，而非猎杀、圈禁</div>
+		</div>
+		<div id="content">
+			<header>
+				<img src="img/logo.png"/>
+			</header>
+			<div class="container">
+				<div class="top">
+					<img class="topBg" src="img/top_bg.png"/>
+					<div id="back"><img src="img/home.png"/></div>
+					<div class="title">
+						<img src="img/rank/title.png"/>
+					</div>
+					<img id="share" src="img/share.png"/>
+				</div>
+				<div class="main">
+					<div class="rankingText">恭喜您，打败了0%的玩家</div>
+					<div class="rankList">
+						<ul class="left">
+							<li><img src="img/rank/ys.png"/></li>
+							<li><img src="img/rank/ljjss.png"/></li>
+							<li><img src="img/rank/plp.png"/></li>
+							<li><img src="img/rank/dt.png"/></li>
+						</ul>
+						<ul class="center">
+							<li>江豚饱食指数</li>
+							<li>垃圾捡拾累计积分</li>
+							<li>瓶中信</li>
+							<li>旅行目的地</li>
+						</ul>
+						<ul class="right">
+							<li class="satiety">0%</li>
+							<li class="accumulate">0</li>
+							<li class="bteMsg">0/40</li>
+							<li class="destination">0/40</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<footer>
+				想要了解更多关于汇丰中国的信息，请点击<span id="focus">关注公众号</span>
+			</footer>
+		</div>
+		<div id="tipsHidden">
+			<div id="tipsPopup">
+				<img id="tipsClose" src="img/gb.png"/>
+				<div class="tipstext">您的积分不足，无法兑换</div>
+				<div id="confirm"><img src="img/confirm.png"/></div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$("#popupLoad").show();	//show loading
+			NProgress.start();
+			var resTag = 0;
+			var token = $.cookie("token"),	//获取url(链接)参数
+				uid = getUrlParam("uid"),
+				sharing = getUrlParam("sharing");
+			console.log(token,uid);
+			
+			var rankInfo = {};		//获取该用户的排名信息
+				userRank = 0;		//该用户的游戏排名
+			if(sharing && uid){		//判断是否由分享链接
+				console.log("from share");
+				$("title").html("汇丰银行--随江豚一起出发");
+				$("#share").hide().siblings("#back").hide();
+				$("footer").show();
+				$.ajax({
+					type:"post",
+					url:"https://hsbc.fugumobile.cn/api/api/Api/getMyRankInfoByShare",
+					async:false,
+					data:JSON.stringify({
+						"uid":uid
+					}),
+					dataType:"json",
+					success:function(data){
+						console.log(data);
+						if(data.errcode==0){
+							rankInfo = data.data;
+							$(".rankingText").html("恭喜您，打败了"+rankInfo.rank_percent+"的玩家");
+							$(".satiety").html(rankInfo.user_dolphin_level+"%").siblings(".accumulate").html(rankInfo.user_garbage_count
+		).siblings(".bteMsg").html(rankInfo.user_bottle_count+"/40").siblings(".destination").html(rankInfo.user_map_count+"/40");
+							userRank = rankInfo.user_rank;
+						}else{
+							$(".tipstext").html(data.errmsg).parents("#tipsHidden").show();
+						}	
+					},
+					error:function(err){
+						console.log(err);
+					}
+				});
+			}else{
+				$.ajax({
+					type:"post",
+					url:"https://hsbc.fugumobile.cn/api/api/Api/getMyRankInfo",
+					async:false,
+					data:JSON.stringify({
+						"token":token
+					}),
+					dataType:"json",
+					success:function(data){
+						console.log(data);
+						if(data.errcode==0){
+							rankInfo = data.data;
+							$(".rankingText").html("恭喜您，打败了"+rankInfo.rank_percent+"的玩家");
+							$(".satiety").html(rankInfo.user_dolphin_level+"%").siblings(".accumulate").html(rankInfo.user_garbage_count
+		).siblings(".bteMsg").html(rankInfo.user_bottle_count+"/40").siblings(".destination").html(rankInfo.user_map_count+"/40");
+							userRank = rankInfo.user_rank;
+						}else{
+							$(".tipstext").html(data.errmsg).parents("#tipsHidden").show();
+							resTag = 1;
+						}	
+					},
+					error:function(err){
+						console.log(err);
+					}
+				});
+			}
+			
+			//判断是否在使用微信
+			var u = navigator.userAgent.toLowerCase();
+			if(u.match(/MicroMessenger/i) == "micromessenger"){
+				var title = "我在汇丰金融小游戏中排名前"+userRank,
+					desc = "快来一起喂江豚宝宝！",
+					shareUrl = "https://hsbc.fugumobile.cn/ranking.html?sharing=5aa0ff2f349ab&uid="+uid,
+					pic = "https://hsbc.fugumobile.cn/img/share_rank.png";
+				setwxshare(title, desc, shareUrl, pic);
+			}
+			
+			$("#back").on("click", function(){
+				window.location.href = "index.html"+window.location.search;
+			});
+			//点击分享
+			$("#share").on("click", function(){
+				window.open('ranking.html?wechatshare={"type":"webpage","title":"我在汇丰金融小游戏中排名前'+userRank+'","description":"快来一起喂江豚宝宝！","link":"https://hsbc.fugumobile.cn/ranking.html?sharing=5aa0ff2f349ab&uid='+uid+'","image":"sharing_icon_ranking"}');
+			});
+			
+			//点击关注公众号
+			$("#focus").on("click", function(){
+				window.open("https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzA5NDQ5NTkyMA==&scene=116#wechat_redirect");
+			});
+			
+			//tips popup
+			$("#tipsClose").on("click", function(){
+		    	$(this).parents("#tipsHidden").hide();
+		    	if(resTag == 1){
+		    		window.location.href = "https://hsbc.fugumobile.cn/exit.html?exit=1";
+		    	}
+		    });
+		    $("#confirm").on("click", function(){
+		    	$(this).parents("#tipsHidden").hide();
+		    	if(resTag == 1){
+		    		//window.location.href = "index.html"+changeURLArg(window.location.search,"uid","");
+		    		window.location.href = "https://hsbc.fugumobile.cn/exit.html?exit=1";
+		    	}
+		    });
+			
+			window.onload = function(){
+				NProgress.done();
+				$("#popupLoad").hide().siblings("#content").show();
+			};
+		</script>
+	</body>
+</html>

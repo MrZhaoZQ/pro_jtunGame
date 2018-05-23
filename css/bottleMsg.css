@@ -1,0 +1,152 @@
+.container {
+  width: 100%;
+  height: 100%;
+  padding-top: 0.8rem;
+  box-sizing: border-box;
+  background: url(../img/bg.jpg) no-repeat;
+  background-size: 100% 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container .top {
+  width: 100%;
+  height: 0.87rem;
+  position: absolute;
+  left: 0;
+  top: 0.8rem;
+}
+.container .top .topBg {
+  width: 100%;
+}
+.container .top #back {
+  width: 15%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container .top #back img {
+  width: auto;
+  height: 0.46rem;
+}
+.container .top .title {
+  width: 85%;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.container .top .title img {
+  width: 1.47rem;
+  margin: 0.1rem 0 0 0.3rem;
+}
+.container .top #collect {
+  width: 0.46rem;
+  height: 0.42rem;
+  position: absolute;
+  right: 0.2rem;
+  top: 0.1rem;
+  z-index: 99;
+}
+.container .main {
+  width: 5.64rem;
+  height: 7.57rem;
+  background: url(../img/gc_status/kuang.png) no-repeat;
+  background-size: 100% 100%;
+  font-size: 0.26rem;
+  color: #0aaeb8;
+  box-sizing: border-box;
+  padding: 16% 12% 14%;
+  position: relative;
+  left: 0;
+  top: 0;
+}
+.container .main .swiperBtn {
+  width: 0.88rem;
+  height: 0.88rem;
+  position: absolute;
+  top: 50%;
+  margin-top: -0.44rem;
+  z-index: 99;
+}
+.container .main .prev {
+  left: -0.3rem;
+}
+.container .main .next {
+  right: -0.3rem;
+}
+.container .main .swiper-container {
+  width: 100%;
+  height: 4.8rem;
+}
+.container .main .swiper-container .swiper-slide {
+  width: 100%;
+  height: 4.8rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  font-family: helvetica;
+  font-size: 0.24rem;
+  color: #000;
+  text-align: justify;
+}
+.container .main .swiper-container .swiper-slide .intro {
+  width: 100%;
+}
+.container .main .swiper-container .swiper-slide .quest {
+  width: 100%;
+  margin: 0.3rem 0 0.1rem;
+}
+.container .main .swiper-container .swiper-slide ul {
+  width: 100%;
+  margin: 0.2rem 0;
+}
+.container .main .swiper-container .swiper-slide ul li {
+  width: 100%;
+  height: 0.6rem;
+  padding: 0 4%;
+  box-sizing: border-box;
+  margin: 0.06rem 0;
+  background: #bde3e4;
+  line-height: 0.6rem;
+  border-radius: 5px;
+  position: relative;
+  left: 0;
+  top: 0;
+}
+.container .main .swiper-container .swiper-slide ul li span {
+  font-weight: bolder;
+  margin-right: 0.06rem;
+}
+.container .main .swiper-container .swiper-slide ul li img {
+  width: 0.24rem;
+  height: 0.16rem;
+  display: none;
+  position: absolute;
+  right: 4%;
+  top: 50%;
+  margin-top: -0.1rem;
+}
+.container .main .swiper-container img {
+  width: 100%;
+  height: 100%;
+}
+.container .main .btns {
+  width: 100%;
+  height: 0.6rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 0.25rem;
+}
+.container .main .btns li {
+  width: 1.43rem;
+  height: 0.6rem;
+}
+.container .main .btns li img {
+  width: 100%;
+  height: 100%;
+}

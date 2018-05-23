@@ -1,0 +1,216 @@
+.container{
+    width: 100%; height: 100%;
+    padding-top: 0.8rem;
+    box-sizing: border-box;
+    background: url(../img/bg.jpg) no-repeat;
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .top{
+        width: 100%; height: 0.87rem;
+        position: absolute; left: 0; top: 0.8rem;
+        .topBg{
+            width: 100%;
+        }
+        #back{
+            width: 15%; height: 100%;
+            position: absolute; left: 0; top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img{
+                width: auto; height: 0.46rem;
+            }
+        }
+        .title{
+            width: 85%; height: 100%;
+            position: absolute; right: 0; top: 0;
+            img{
+                width: 2.22rem;
+                margin: 0.1rem 0 0 0.3rem;
+            }
+        }
+    }
+    .main{
+        width: 5.64rem; height: 7.57rem;
+        background: url(../img/gc_status/kuang.png) no-repeat;
+        background-size: 100% 100%;
+        position: relative; left: 0; top: 0;
+        font-size: 0.24rem;
+        color: #0aaeb8;
+        .prev{
+            width: 0.88rem; height: 0.88rem;
+            display: none;
+            position: absolute; left: 0.16rem; top: 0.06rem;
+        }
+        #close{
+            width: 0.88rem; height: 0.88rem;
+            position: absolute; right: 0.16rem; top: 0.06rem;
+        }
+        .part{
+            width: 100%; height: 100%;
+            box-sizing: border-box;
+            .btn{
+                width: 2.03rem; height: 0.6rem;
+                margin: 0 auto;
+                img{
+                    width: 100%; height: 100%;
+                }
+            }
+            .kdh{
+                width: 100%; height: 0.62rem;
+                background: #bde3e4;
+                border-radius: 5px;
+                display: flex;
+                li{
+                    flex: 1;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+            .fishType{
+                width: 0.96rem; height: 1.23rem;
+                margin: 0 auto;
+                position: relative; left: 0; top: 0;
+                .num{
+                    width: 100%; height: 32%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-family: arial;
+                    font-size: 0.22rem;
+                    color: #0aaeb8;
+                    position: absolute; left: 0; bottom: 0;
+                }
+                .numff{
+                    color: #fff;
+                }
+            }
+            .numBtns{
+                width: 100%; height: 0.52rem;
+                margin: 0.45rem 0 0.75rem;
+                display: flex;
+                justify-content: center;
+                .reduce, .add{
+                    width: 0.6rem;
+                }
+                .numBox{
+                    width: 1.02rem;
+                    margin: 0 0.15rem;
+                    input{
+                        width: 100%; height: 0.52rem;
+                        border: none;
+                        outline: none;
+                        background: url(../img/gc_status/shuliang.png) no-repeat;
+                        background-size: 100% 100%;
+                        text-align: center;
+                    }
+                }
+            }
+            .dhText, .wyText{
+                width: 100%; height: 0.52rem;
+                margin: 0.45rem 0 0.5rem;
+                text-align: center;
+                line-height: 0.52rem;
+                color: #23b03a;
+            }
+        }
+        .part2, .part3, .part4, .part5, .part6{
+            img{
+                width: 100%; height: 100%;
+            }
+        }  
+        .part1{
+            padding: 16% 12%;
+            .boxOne{
+                width: 100%; height: 93%;
+                display: flex;
+                ul{
+                    flex: 1;
+                    li{
+                        width: 100%; height: 0.62rem;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        img{
+                            
+                        }
+                    }
+                }
+            }
+        }
+        .part2{
+            padding: 16% 12%;
+            display: none;
+            .fishes{
+                width: 100%;
+                margin: 0.5rem 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+                li{
+                    width: 0.96rem; height: 1.23rem;
+                    margin: 0.3rem 0.2rem;
+                    position: relative; left: 0; top: 0;
+                    img{
+                        width: 100%; height: 100%;
+                    }
+                    .num{
+                        width: 100%; height: 32%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-family: arial;
+                        font-size: 0.22rem;
+                        color: #0aaeb8;
+                        position: absolute; left: 0; bottom: 0;
+                    }
+                }
+            }
+        }
+        .part3{
+            padding: 18% 12% 10%;
+            display: none;
+            .kdh{
+                margin-top: 0.88rem;
+            }
+        }
+        .part4{
+            padding: 18% 12% 10%;
+            display: none;
+            img{
+                width: 100%; height: 100%;
+            }
+            .dhBox{
+                width: 100%;
+                margin-top: 0.75rem;
+                background: #bde3e4;
+                border-radius: 5px;
+                ul{
+                    width: 100%; height: 0.62rem;
+                    display: flex;
+                    li{
+                        flex: 1;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        &:first-child{
+                            flex: 1.2;
+                        }
+                    }
+                }
+            }
+        }
+        .part5, .part6{
+            padding: 16% 12%;
+            display: none;
+            //display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

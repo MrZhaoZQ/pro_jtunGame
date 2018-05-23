@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/bottleMsg.css" />
+		<link rel="stylesheet" type="text/css" href="swiper/css/swiper-3.4.1.min.css"/>
+		<link rel="stylesheet" type="text/css" href="js/nProgress/nprogress.css"/>
+		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/nProgress/nprogress.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="swiper/js/swiper-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/wxshare.js" type="text/javascript" charset="utf-8"></script>
+		<title>随江豚出发</title>
+	</head>
+	<body>
+		<div id="popupLoad">
+			<div class="loadBox">
+				<div class="loadbar">
+					<div id="bar"></div>
+					<img class="loadJtun" src="img/jt_1.gif"/>
+				</div>
+				<div id="loading">8%</div>
+			</div>
+			<div class="loadtips">环保小贴士：江豚是少数会主动营救人类的野生动物<br />之一，让我们一起去保护它，而非猎杀、圈禁</div>
+		</div>
+		<div id="content">
+			<header>
+				<img src="img/logo.png"/>
+			</header>
+			<div class="container">
+				<div class="top">
+					<img class="topBg" src="img/top_bg.png"/>
+					<div id="back"><img src="img/home.png"/></div>
+					<div class="title">
+						<img src="img/btl_msg/title.png"/>
+					</div>
+					<img id="collect" src="img/sc.png"/>
+				</div>
+				<div class="main">
+					<img class="swiperBtn prev" src="img/btl_msg/previous.png"/>
+					<img class="swiperBtn next" src="img/btl_msg/next.png"/>
+					<div class="swiper-container">
+					    <div class="swiper-wrapper"></div>
+					</div>
+					<ul class="btns">
+						<li class="favo"><img src="img/favo.png"/></li>
+						<li class="share"><img src="img/btl_msg/fx.png"/></li>
+					</ul>
+				</div>
+			</div>
+			<!--<img class="sQRcode" src="img/sQrcode.png"/>
+			<div class="qrCodeBox">
+				<img class="qrCode" src="img/qrcode.jpg"/>
+			</div>-->
+			<footer>
+				想要了解更多关于汇丰中国的信息，请点击<span id="focus">关注公众号</span>
+			</footer>
+		</div>
+		<div id="tipsHidden">
+			<div id="tipsPopup">
+				<img id="tipsClose" src="img/gb.png"/>
+				<div class="tipstext">您的积分不足，无法兑换</div>
+				<div id="confirm"><img src="img/confirm.png"/></div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$("#popupLoad").show();	//show loading
+			NProgress.start();
+			var resTag = 0;
+			var token = $.cookie("token"),	//获取url(链接)参数
+				uid = getUrlParam("uid"),
+				sharing = getUrlParam("sharing");
+			console.log(token,uid);
+			var bottleId = 0;
+			
+			var list = [],	//当前用户的漂流瓶列表
+				collectNum = 0;	//当前收藏的总数
+			if(sharing && uid){		//判断是否由分享链接
+				console.log("from share");
+				$("title").html("汇丰银行--随江豚一起出发");
+				$("#collect").hide().siblings("#back").hide();
+				$("footer").show();//.siblings(".sQRcode").show();
+				$(".swiper-container").height("5.6rem").siblings(".btns").hide();
+				$.ajax({		//获取当前对应的漂流瓶信息
+					type:"post",
+					url:"https://hsbc.fugumobile.cn/api/api/Api/getBottleInfoByShare",
+					async:false,
+					data:JSON.stringify({
+						"uid":uid,
+						"bottleId":parseInt(getUrlParam("bottleId"))
+					}),
+					dataType:"json",
+					success:function(data){
+						console.log(data);
+						if(data.errcode==0){
+							var msg = data.data;
+							$(".swiper-wrapper").append('<div class="swiper-slide">'+
+						    	'<div class="intro">'+msg.map_introduce+'</div>'+
+						    	'<div class="quest">'+msg.map_question+'</div>'+
+						    	'<ul class="answerList">'+
+						    		'<li><span>A.</span>'+msg.map_answer_A+'<img src=""/></li>'+
+							    	'<li><span>B.</span>'+msg.map_answer_B+'<img src=""/></li>'+
+							    	'<li><span>C.</span>'+msg.map_answer_C+'<img src=""/></li>'+
+							    	'<li><span>D.</span>'+msg.map_answer_D+'<img src=""/></li>'+
+						    	'</ul>'+
+						    '</div>');
+						    $(".answerList").find("li").eq(msg.map_right_answer-1).css({"background":"#7db93d","color":"#fff"}).children("img").attr("src","img/btl_msg/right.png").show();
+						}else{
+							$(".tipstext").html(data.errmsg).parents("#tipsHidden").show();
+						}
+					},
+					error:function(err){
+						console.log(err);
+					}
+				});
+			}else{
+				//获取该用户的漂流瓶列表
+				$.ajax({
+					type:"post",
+					url:"https://hsbc.fugumobile.cn/api/api/Api/getMyBottleList",
+					async:false,
+					data:JSON.stringify({
+						"token":token,
+						"type":1
+					}),
+					dataType:"json",
+					success:function(data){
+						console.log(data);
+						if(data.errcode==0){
+							list = data.data.bottle_list;
+							collectNum = data.data.collect_count;
+							for (var i=0;i<list.length;i++) {
+								$(".swiper-wrapper").append('<div class="swiper-slide">'+
+							    	'<div class="intro">'+list[i].map_introduce+'</div>'+
+							    	'<div class="quest">'+list[i].map_question+'</div>'+
+							    	'<ul class="answerList">'+
+							    		'<li><span>A.</span>'+list[i].map_answer_A+'<img src=""/></li>'+
+								    	'<li><span>B.</span>'+list[i].map_answer_B+'<img src=""/></li>'+
+								    	'<li><span>C.</span>'+list[i].map_answer_C+'<img src=""/></li>'+
+								    	'<li><span>D.</span>'+list[i].map_answer_D+'<img src=""/></li>'+
+							    	'</ul>'+
+							    '</div>');
+							    $(".answerList").eq(i).find("li").eq(list[i].map_right_answer-1).css({"background":"#7db93d","color":"#fff"}).children("img").attr("src","img/btl_msg/right.png").show();
+							}
+						}else{
+							$(".tipstext").html(data.errmsg).parents("#tipsHidden").show();
+							resTag = 1;
+						}
+					},
+					error:function(err){
+						console.log(err);
+					}
+				});
+			}
+						
+			//init swiper
+			var sInd = 0;
+			if(list.length>1){
+				var mySwiper = new Swiper('.swiper-container', {
+					autoplay: false,
+					pagination: '.swiper-pagination',
+					observer:true,//修改swiper自己或子元素时，自动初始化swiper 
+					observeParents:true,//修改swiper的父元素时，自动初始化swiper 
+					prevButton:'.prev',
+					nextButton:'.next',
+					onTransitionEnd:function(mySwiper){
+						//console.log(mySwiper.activeIndex);
+						sInd = mySwiper.activeIndex;
+						if(list[sInd].collect==1){
+							$(".favo").attr("collected",1).children("img").attr("src","img/nofavo.png");
+						}else{
+							$(".favo").attr("collected",0).children("img").attr("src","img/favo.png");
+						}
+						bottleId = sInd+1;
+						if(sInd==0){
+							$(".prev").hide().siblings(".next").show();
+						}else if(sInd==$(".swiper-slide").length-1){
+							$(".prev").show().siblings(".next").hide();
+						}else{
+							$(".prev").show().siblings(".next").show();
+						}
+			        },
+				});
+			}else{
+				$(".swiperBtn").hide();
+				bottleId = 1;
+				if(list.length==1 && list[0].collect==1){
+					$(".favo").attr("collected",1).children("img").attr("src","img/nofavo.png");
+				}
+			}
+				
+			
+			//判断是否在使用微信
+			var u = navigator.userAgent.toLowerCase();
+			if(u.match(/MicroMessenger/i) == "micromessenger"){
+				var title = "这道题你会答吗？",
+					desc = "快来一起喂江豚宝宝！",
+					shareUrl = "https://hsbc.fugumobile.cn/bottleMsg.html?sharing=5aa0ff2f349ab&uid="+uid+"&bottleId="+bottleId,
+					pic = "https://hsbc.fugumobile.cn/img/share_bottle.png";
+				setwxshare(title, desc, shareUrl, pic);
+			}
+			
+			$("#back").on("click", function(){
+				window.location.href = "index.html"+window.location.search;
+			});
+			//点击分享
+			$("#collect").on("click", function(){
+				console.log("收藏");
+				if(collectNum!=0){
+					$.ajax({
+						type:"post",
+						url:"https://hsbc.fugumobile.cn/api/api/Api/getMyBottleList",
+						async:false,
+						data:JSON.stringify({
+							"token":token,
+							"type":2
+						}),
+						dataType:"json",
+						success:function(data){
+							console.log(data);
+							if(data.errcode==0){
+								list = data.data.bottle_list;
+								if(list.length==1){
+									$(".swiperBtn").hide();
+									mySwiper.lockSwipes();
+								}
+								$(".swiper-wrapper").html("");
+								for (var i=0;i<list.length;i++) {
+									$(".swiper-wrapper").append('<div class="swiper-slide">'+
+								    	'<div class="intro">'+list[i].map_introduce+'</div>'+
+								    	'<div class="quest">'+list[i].map_question+'</div>'+
+								    	'<ul class="answerList">'+
+								    		'<li><span>A.</span>'+list[i].map_answer_A+'<img src=""/></li>'+
+									    	'<li><span>B.</span>'+list[i].map_answer_B+'<img src=""/></li>'+
+									    	'<li><span>C.</span>'+list[i].map_answer_C+'<img src=""/></li>'+
+									    	'<li><span>D.</span>'+list[i].map_answer_D+'<img src=""/></li>'+
+								    	'</ul>'+
+								    '</div>');
+								    $(".answerList").eq(i).find("li").eq(list[i].map_right_answer-1).css({"background":"#7db93d","color":"#fff"}).children("img").attr("src","img/btl_msg/right.png").show();
+								}
+								$(".favo").attr("collected",1).children("img").attr("src","img/nofavo.png");
+							}else{
+								$(".tipstext").html(data.errmsg).parents("#tipsHidden").show();
+								resTag = 1;
+							}
+						},
+						error:function(err){
+							console.log(err);
+						}
+					});
+				}
+			});
+			
+			$(".favo").on("click", function(){
+				var $favo = $(this);
+				$.ajax({
+					type:"post",
+					url:"https://hsbc.fugumobile.cn/api/api/Api/changeBottleCollect",
+					async:false,
+					data:JSON.stringify({
+						"token":token,
+						"mapId":bottleId
+					}),
+					dataType:"json",
+					success:function(data){
+						console.log(data);
+						if(data.errcode==0){
+							if($favo.attr("collected")==1){	//collected==1:已收藏
+								$favo.attr("collected",0).children("img").attr("src","img/favo.png");
+								list[sInd].collect = 0;
+							}else{
+								$favo.attr("collected",1).children("img").attr("src","img/nofavo.png");
+								list[sInd].collect = 1;
+							}
+							collectNum = data.data;
+						}else{
+							$(".tipstext").html(data.errmsg).parents("#tipsHidden").show();
+							resTag = 1;
+						}
+					},
+					error:function(err){
+						console.log(err);
+					}
+				});	
+			});
+			$(".share").on("click", function(){
+				window.open('bottleMsg.html?wechatshare={"type":"webpage","title":"这道题你会答吗？","description":"快来一起喂江豚宝宝！","link":"https://hsbc.fugumobile.cn/bottleMsg.html?sharing=5aa0ff2f349ab&uid='+uid+'&bottleId='+bottleId+'","image":"sharing_icon_bottle"}');
+			});
+			
+			//点击关注公众号
+			$("#focus").on("click", function(){
+				window.open("https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzA5NDQ5NTkyMA==&scene=124#wechat_redirect");
+			});
+			
+			//点击二维码
+			/*$(".sQRcode").on("click",function(){
+				$(this).siblings(".qrCodeBox").css({"display":"flex"});
+			});
+			$(".qrCodeBox").on("click",function(){
+				$(this).hide();
+			});
+			$(".qrCode").on("click",function(e){	//阻止事件冒泡
+				if(e && e.stopPropagation) { //非IE 
+		        	e.stopPropagation(); 
+		        }else{ //IE 
+		        	window.event.cancelBubble = true; 
+		        } 
+			});*/
+			
+			//tips popup
+			$("#tipsClose").on("click", function(){
+		    	$(this).parents("#tipsHidden").hide();
+		    	if(resTag == 1){
+		    		window.location.href = "https://hsbc.fugumobile.cn/exit.html?exit=1";
+		    	}
+		    });
+		    $("#confirm").on("click", function(){
+		    	$(this).parents("#tipsHidden").hide();
+		    	if(resTag == 1){
+		    		//window.location.href = "index.html"+changeURLArg(window.location.search,"uid","");
+		    		window.location.href = "https://hsbc.fugumobile.cn/exit.html?exit=1";
+		    	}
+		    });
+			
+			window.onload = function(){
+				NProgress.done();
+				$("#popupLoad").hide().siblings("#content").show();
+			};
+		</script>
+	</body>
+</html>
